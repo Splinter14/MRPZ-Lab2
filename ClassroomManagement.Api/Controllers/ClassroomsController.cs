@@ -76,4 +76,22 @@ public class ClassroomsController : ControllerBase
 
         return Ok(response);
     }
+
+    [HttpGet("search")]
+    [ProducesResponseType(typeof(IEnumerable<ClassroomResponseDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Search([FromQuery] ClassroomSearchQuery query)
+    {
+        var classrooms = await _repository.SearchAsync(query);
+        var response = classrooms.Select(c => new ClassroomResponseDto
+        {
+            Id = c.Id,
+            Number = c.Number,
+            Building = c.Building,
+            Capacity = c.Capacity,
+            Equipment = c.Equipment,
+            CreatedAt = c.CreatedAt
+        });
+
+        return Ok(response);
+    }
 }
