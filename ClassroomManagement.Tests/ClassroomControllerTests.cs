@@ -1,5 +1,6 @@
 using ClassroomManagement.Api.Controllers;
 using ClassroomManagement.Api.DTOs;
+using ClassroomManagement.Api.Models;
 using ClassroomManagement.Api.Repositories;
 using ClassroomManagement.Api.Validators;
 using FluentAssertions;
@@ -62,5 +63,29 @@ public class ClassroomControllerTests
         // Assert
         var badRequestResult = result.Should().BeOfType<BadRequestObjectResult>().Subject;
         badRequestResult.StatusCode.Should().Be(400);
+    }
+
+    [Fact]
+    public async Task Search_MatchingQuery_ShouldReturnOkWithFilteredClassrooms()
+    {
+        // Arrange
+        await _repository.AddAsync(new Classroom
+        {
+            Number = "105",
+            Building = "Корпус 18",
+            Capacity = 40,
+            Equipment = new List<string> { "Проектор" }
+        });
+
+        var query = new ClassroomSearchQuery { MinCapacity = 30 };
+
+        // Act
+        var result = await _controller.Search(query);
+
+        // Assert
+        var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+        okResult.StatusCode.Should().Be(200);
+        var classrooms = okResult.Value.Should().BeAssignableTo<IEnumerable<ClassroomResponseDto>>().Subject;
+        classrooms.Should().ContainSingle(c => c.Number == "105");
     }
 }

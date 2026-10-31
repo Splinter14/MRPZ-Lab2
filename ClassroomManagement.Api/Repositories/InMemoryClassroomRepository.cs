@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using ClassroomManagement.Api.DTOs;
 using ClassroomManagement.Api.Models;
 
 namespace ClassroomManagement.Api.Repositories;
@@ -34,5 +35,33 @@ public class InMemoryClassroomRepository : IClassroomRepository
             c.Number.Equals(number, StringComparison.OrdinalIgnoreCase) && 
             c.Building.Equals(building, StringComparison.OrdinalIgnoreCase));
         return Task.FromResult(exists);
+    }
+
+    public Task<IEnumerable<Classroom>> SearchAsync(ClassroomSearchQuery query)
+    {
+        var items = _classrooms.Values.AsEnumerable();
+
+        if (query.MinCapacity.HasValue)
+        {
+            items = items.Where(c => c.Capacity >= query.MinCapacity.Value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(query.Building))
+        {
+            items = items.Where(c => c.Building.Contains(query.Building, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!string.IsNullOrWhiteSpace(query.Equipment))
+        {
+            var requestedEquipments = query.Equipment
+                .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+            foreach (var req in requestedEquipments)
+            {
+                items = items.Where(c => c.Equipment.Any(e => e.Equals(req, StringComparison.OrdinalIgnoreCase)));
+            }
+        }
+
+        return Task.FromResult<IEnumerable<Classroom>>(items.ToList());
     }
 }
