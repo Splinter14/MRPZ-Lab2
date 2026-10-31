@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomManagement.Api", "ClassroomManagement.Api\ClassroomManagement.Api.csproj", "{C7F45810-15C7-43E1-AF29-8CA5E1A03F51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomManagement.Tests", "ClassroomManagement.Tests\ClassroomManagement.Tests.csproj", "{F06E205E-4AFD-4668-8864-6753D198902B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7F45810-15C7-43E1-AF29-8CA5E1A03F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F45810-15C7-43E1-AF29-8CA5E1A03F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F45810-15C7-43E1-AF29-8CA5E1A03F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F45810-15C7-43E1-AF29-8CA5E1A03F51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F06E205E-4AFD-4668-8864-6753D198902B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F06E205E-4AFD-4668-8864-6753D198902B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F06E205E-4AFD-4668-8864-6753D198902B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F06E205E-4AFD-4668-8864-6753D198902B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
