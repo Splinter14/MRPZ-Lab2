@@ -1,0 +1,5 @@
+{
+    "dotnet.defaultSolution": "ClassroomManagementSystem.sln",
+    "csharp.inlayHints.enableInlayHintsForParameters": true,
+    "csharp.inlayHints.enableInlayHintsForLiteralParameters": true
+}
