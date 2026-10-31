@@ -20,6 +20,9 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSingleton<IClassroomRepository, InMemoryClassroomRepository>();
 builder.Services.AddSingleton<ClassroomValidator>();
 
+builder.Services.AddSingleton<IBookingRepository, InMemoryBookingRepository>();
+builder.Services.AddSingleton<BookingValidator>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
